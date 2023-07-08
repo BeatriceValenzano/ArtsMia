@@ -2,7 +2,7 @@ package it.polito.tdp.artsmia.model;
 
 public class ArtObject {
 
-	private int id;
+	private Integer id;
 	private String classification;
 	private String continent;
 	private String country;

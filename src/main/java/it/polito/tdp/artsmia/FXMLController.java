@@ -47,12 +47,34 @@ public class FXMLController {
     
     @FXML
     void doAnalizzaOggetti(ActionEvent event) {
-
+    	this.model.creaGrafo();
+    	txtResult.setText("Grafo creato!");
     }
 
     @FXML
     void doCalcolaComponenteConnessa(ActionEvent event) {
-
+//  Voglio prendere un id e calcolare la dimensione della componente connessa che contiene quel nodo
+    	String input = txtObjectId.getText();
+    	Integer inputNum = 0;
+    	
+//    	RICORDA DI GESTIRE
+    	if(input == "") {
+    		txtResult.setText("Id inserito non valido!");
+    		return;
+    	}
+    	try{
+    		inputNum = Integer.parseInt(input);
+    	} catch (NumberFormatException nbe) {
+    		nbe.printStackTrace();
+    		return;
+    	}
+    	
+    	if(model.isIdInGraph(inputNum)) {
+    		Integer sizeConnessa = this.model.componenteConnessa(inputNum);
+        	txtResult.setText("Il nodo " + input + " fa parte di una componente connessa di dimensione " + sizeConnessa);
+    	} else {
+    		txtResult.setText("Id inserito non valido!");
+    	}
     }
 
     @FXML
